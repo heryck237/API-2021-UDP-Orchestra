@@ -47,7 +47,7 @@ function startContainer( image, command, containerHasStarted ) {
 		 * it would be invoked when the container terminates. That is not really helpful for us in
 		 * our use case.
 		 */
-		console.log("Starting auditor container " + JSON.stringify(container.id));
+		//console.log("Starting auditor container " + JSON.stringify(container.id));
 		container.start( function(err, startData) {
 			//checkContainerStatus();
 			container.inspect(function(err, containerData) {
@@ -111,4 +111,3 @@ DockerUtils.prototype.killRandomMusicianContainer = killRandomMusicianContainer;
 DockerUtils.prototype.dump = dump;
 
 module.exports = new DockerUtils();
-
