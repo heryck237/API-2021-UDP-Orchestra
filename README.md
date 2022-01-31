@@ -125,7 +125,7 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question                                                                      | In a JavaScript program, if we have an object, how can we **serialize it in JSON**?                                                             |
 |                                                                               | On utilise JSON.stringify(object) pour serialiser un objet en JSON.\_                                                                           |
 | Question                                                                      | What is **npm**?                                                                                                                                |
-|                                                                               | npm est le gestionnaire de paquet officiel de NODE.js . il automatise toute la gestion des dépendances et des paquets des projets JavaScript.\_ |
+|                                                                               | npm est le gestionnaire de paquet officiel de NODE.js . il automatise toute la gestion des dépendances et des paquets des projets JavaScript. |
 | Question                                                                      | What is the `npm install` command and what is the purpose of the `--save` flag?                                                                 |
 |                                                                               | La commande est : `npm install [--save] nom_module ` .                                                                                                                 L’option `--save` sert à inclure cette dependance dans le fichier package.json .
 | Question                                                                      | How can we use the `https://www.npmjs.com/` web site?                                                                                           |
@@ -135,9 +135,9 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question                                                                      | In Node.js, how can we execute a function on a **periodic** basis?                                                                              |
 |                                                                               | En utilisant la fonction setInterval(function, period) ; period en ms\_                                                                         |
 | Question                                                                      | In Node.js, how can we **emit UDP datagrams**?                                                                                                  |
-|                                                                               | On peut émettre des datagrammes UDP en utilisant la méthode send() sur un objet de type dgram.createSocket\_                                    |
+|                                                                               | On peut émettre des datagrammes UDP en utilisant la méthode send() sur un objet de type dgram.createSocket                                    |
 | Question                                                                      | In Node.js, how can we **access the command line arguments**?                                                                                   |
-|                                                                               | On peut le faire à travers les indices du tableau argv qui contient tous les arguments de la ligne de commande.\_                               |
+|                                                                               | On peut le faire à travers les indices du tableau argv qui contient tous les arguments de la ligne de commande.                               |
 
 ## Task 3: package the "musician" app in a Docker image
 
@@ -146,21 +146,19 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question                                                                                                                | How do we **define and build our own Docker image**?                                                                                                                                                                                                                                       |
 |                                                                                                                         | On commence par créer un fichier appelé Dockerfile dans lequel on défini toutes les applications les fichiers de configuration et les commandes à exécuter lors de la construction de l'image. Ensuite on crée l’image grâce à la commande docker build -t nom_de_limage chemin_Dockerfile |
 | |Généralement si on est situé dans le même dossier que le Dockerfile on exécute juste : docker build -t nom*de_limage .*
-| Question                                                                                                                | How can we use the `ENTRYPOINT` statement in our Dockerfile?                                                                                                                                                                                                                               |
-|                                                                                                                         |  ENTRYPOINT[“executable”, “param1”, “param2”]                                                                                                                                                                                                                                              |
-|                                                                        |(Forme Shell) ENTRYPOINT command param1 param2\_
-| Question                                                                                                                | After building our Docker image, how do we use it to **run containers**?                                                                                                                                                                                                                   |
-|                                                                                                                         | Enter your response here…                                                                                                                                                                                                                                                                  |
-
-docker run [-option] nom*de_limage
--d if we need to run our container on background
--it pour le mode interactif avce nom_de_limage suivit de /bin/bash* |
+| Question | How can we use the `ENTRYPOINT` statement in our Dockerfile?                  |
+|          |  ENTRYPOINT[“executable”, “param1”, “param2”]       |
+|          | (Forme Shell) ENTRYPOINT command param1 param2      |
+| Question | After building our Docker image, how do we use it to **run containers**  |
+|          | docker run [-option] nom*de_limage
+|          |-d if we need to run our container on background
+|          |-it pour le mode interactif avce nom_de_limage suivit de /bin/bash*              |
 | Question | How do we get the list of all **running containers**? |
-| | docker ps* |
+|          | docker ps* |
 | Question | How do we **stop/kill** one running container? |
-| | Docker kill/stop nom_du_container* |
+|          | Docker kill/stop nom_du_container* |
 | Question | How can we check that our running containers are effectively sending UDP datagrams? |
-| | En utilisant un client postman avec filtre UDP\_ |
+|          | En utilisant un client postman avec filtre UDP |
 
 ## Task 4: implement an "auditor" Node.js application
 
@@ -170,26 +168,25 @@ docker run [-option] nom*de_limage
 |                        | On peut le faire en utilisant la fonction bind() sur un socket UDP\_                               |
 | Question               | How can we use the `Map` built-in object introduced in ECMAScript 6 to implement a **dictionary**? |
 |                        | const map = new Map()                                                                              |
-|  | map.set(key, value);
+|                        | map.set(key, value);
 | Question               | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?   |
 |                        | npm install moment                                                                                 |
-
-var moment = require('moment'); // require
-moment().format(); // pour le formatage
-moment().subtract() ; //pour obtenir des intervalles de temps* |
-| Question | When and how do we **get rid of inactive players**? |
-| | Après 5s d’inactivité on supprime la clé() de la Map* |
-| Question | How do I implement a **simple TCP server** in Node.js? |
-| | Pour ce faire il faut au préalable inclure le module net avec :
-const Net = require('net');
-appeler la fonction createServer() sur cette variable. \_ |
+|                        | var moment = require('moment'); // require
+|                        | moment().format(); // pour le formatage
+|                        | moment().subtract() ; //pour obtenir des intervalles de temps* |
+| Question               | When and how do we **get rid of inactive players**? |
+|                        | Après 5s d’inactivité on supprime la clé() de la Map* |
+| Question               | How do I implement a **simple TCP server** in Node.js? |
+|                        | Pour ce faire il faut au préalable inclure le module net avec :
+|                        | const Net = require('net');
+|                        | appeler la fonction createServer() sur cette variable. |
 
 ## Task 5: package the "auditor" app in a Docker image
 
 | #        | Topic                                                                                |
 | -------- | ------------------------------------------------------------------------------------ |
 | Question | How do we validate that the whole system works, once we have built our Docker image? |
-|          | On peut vérifier la validité de notre système en exécutant le script validate.sh\_   |
+|          | On peut vérifier la validité de notre système en exécutant le script validate.sh     |
 
 ## Constraints
 
