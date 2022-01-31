@@ -3,11 +3,11 @@
  */
 const dgram = require('dgram');
 /*
- * New instances of dgram.Socket 
+ * New instances of dgram.Socket
  */
 const server = dgram.createSocket('udp4');
 /*
- * Generate a v4 UUID (random) 
+ * Generate a v4 UUID (random)
  */
 const uuid = require('uuid');
 const { v4: uuidv4 } = require('uuid');
@@ -26,7 +26,7 @@ const instruments = new Map([
                             ["drum", "boum-boum"]
                             ]);
 /*
- * verification of user input 
+ * verification of user input
  */
 if(process.argv.length != 3){
     console.log('Invalid number of arguments');
@@ -56,20 +56,22 @@ class Instrument {
       this.uuid = uuid;
       this.sound  = sound;
     }
-  
+
+    start(){
+      setInterval(this.update.bind(this), 5000);
+    }
+
     update() {
         var  payload = JSON.stringify(this);
-        var  message = new Buffer(payload);
+        var  message = new Buffer.from(payload);
         server.send(message, 0, message.length, protocol.PROTOCOL_MULTICAST_PORT, protocol.PROTOCOL_MULTICAST_ADDRESS, (err, bytes) => {
             if(err){
                 throw new Error(err);
             }
           console.log("Sending ad: " + payload + " via port " + protocol.PROTOCOL_MULTICAST_PORT);
         });
-        setInterval(this.update.bind(this), 5000);
     };
   }
-  
+
   let instru = new Instrument(uuidv4(), sound);
-  instru.update();
- 
+  instru.start();
