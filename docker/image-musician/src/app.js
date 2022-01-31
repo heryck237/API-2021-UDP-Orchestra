@@ -58,7 +58,7 @@ class Instrument {
     }
 
     start(){
-      setInterval(this.update.bind(this), 5000);
+      setInterval(this.update.bind(this), 1000);
     }
 
     update() {
