@@ -1,29 +1,32 @@
- 
-
 /*
  * Import Sockets UDP Datagram
  */
 const dgram = require('dgram');
 /*
- * New instances of dgram.Socket 
+ * New instances of dgram.Socket
  */
 const socket = dgram.createSocket('udp4');
+/**
+ * and lodash for algorithmic
+*/
 var _ = require('lodash');
 /**
  *  for TCP network 
  */
 var net = require('net');
 /**
- *  for load date 
+ *  for date
  */
 var moment = require('moment');
+
+/**
+* Import protocol
+*/
+var protocol = require('./protocol');
+
 /*
  * Generate a v4 UUID (random) 
  */
-const multicastPort    = 2222;
-const tcpPort          = 2205;
-const multicastAddress = "239.255.3.5";
-const tcpAddress       = "0.0.0.0";
 
 const uuid = require('uuid');
 const { v4: uuidv4 } = require('uuid');
@@ -38,29 +41,26 @@ instruments.set("trulu", "flute");
 instruments.set("gzi-gzi", "violin");
 instruments.set( "boum-boum", "drum");
 
-
 /*
- * New instance of musician
- */
-var musician = new Map();
-/*
- * verification of user input 
+ * check user input
  */
 if(process.argv.length != 2){
     console.log('Invalid numbers of arguments');
     console.log('Usage: node app.js <>');
     return;
-}  
+}
+/*
+ * New instance of musician to store active musician
+ */
+var musician = new Map();
 
 /*
- * Tells the kernel to join a source-specific multicast
- * channel at the given sourceAddress and groupAddress 
+ * Bind the multicast port and join multicast group
  */
-socket.bind(multicastPort, () => {
-  console.log('listen on port: %j',socket.address());
-  socket.addMembership(multicastAddress);
+socket.bind(protocol.PROTOCOL_MULTICAST_PORT, () => {
+  socket.addMembership(protocol.PROTOCOL_MULTICAST_ADDRESS);
   });
-socket.on('message', (msg,rinfo) => {
+socket.on('message', (msg, rinfo) => {
 
     var newSound = JSON.parse(msg);
     var instrument = {
@@ -68,24 +68,24 @@ socket.on('message', (msg,rinfo) => {
                       instrument : instruments.get(newSound.sound),
                       activeSince: moment().toISOString()
                      };
-
+    // store musicians
     musician.set(instrument.uuid, instrument);
-                    
-    console.log("Ad has arrived: '" + msg + "'. Source address: " + 
-                rinfo.address + ", source port: " + rinfo.port);
 });
 
-var server = net.createServer((soc) => {
+var server = net.createServer((sock) => {
     var arraymus = new Array();
 
     for(var [key, value] of musician.entries()){
       if(moment().diff(value.activeSince, 'seconds') > 5){
         musician.delete(key);
       }else{
+       // store active musician
+        console.log("Active musician: " + value + " via port " + server.address().port);
         arraymus.push(value);
       }
     }
-    soc.end(JSON.stringify(arraymus));
+    // send array before closimg the connection
+    sock.end(JSON.stringify(arraymus));
 });
-
-server.listen(tcpPort, tcpAddress);
+// server would listen on the port and address specified in the protocol
+server.listen(protocol.PROTOCOL_TCP_PORT, protocol.PROTOCOL_TCP_ADDRESS);

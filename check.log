@@ -1,0 +1,32 @@
+origin	git@github.com:heryck237/API-2021-UDP-Orchestra.git (fetch)
+origin	git@github.com:heryck237/API-2021-UDP-Orchestra.git (push)
+11 containers have been started.
+0f70948845a03743a457bf00b9dbd75c0fec05c3d5c16034382676b87292ae7d : /opt/app/app.js,drum
+290cd1abbdb908d0bdb5b09f7c802a20070a255b06bdb3fd1994830bdddc1942 : /opt/app/app.js,violin
+b4fbccf3f91ca4578aca9615851252fc0dfea4e93f85fc8537222700e698ce3b : /opt/app/app.js,violin
+e52a43087ad615cfc441cd33825f107405ebbc546a92c53fd42db39664b6ca1a : /opt/app/app.js,drum
+c22e23ab8b1cc01522760a2c8f173e45655d5060307b00343c6c0696c6a63d8b : /opt/app/app.js,drum
+f90184a7becf7363c203326e76ba9c44c5d0914d70c3da2659421336ffb55d99 : /opt/app/app.js,flute
+ceb4f8a25f34a76486f99113c7a1a5bd529f3065309fbdb53b40ed5e0dac621f : /opt/app/app.js,drum
+3283432765de2ec4aee9bea6b30e782ae7fb40634ce4b8f8cd6abbb498820df2 : /opt/app/app.js,piano
+e9d47fa4e88db5d3f55f671aacf64d025a9c2d63af59dc07a512b93408e3b36a : /opt/app/app.js,drum
+994fe20b94fc195d8a70ea89a07389458e760a94bfb985f80f43f46d0de7b36b : /opt/app/app.js,flute
+dedece91356c2caf968eb14fbd44e4f48fc7913337ffeb55000f783e7aedfdba : /opt/app/app.js
+Auditor validation: success: ["drum","drum","drum","drum","drum","flute","flute","piano","violin","violin"]
+There are 10 musicians, let's kill one
+killed 0f70948845a03743a457bf00b9dbd75c0fec05c3d5c16034382676b87292ae7d
+Auditor validation: success: ["drum","drum","drum","drum","flute","flute","piano","violin","violin"]
+Scheduling a new test
+There are 9 musicians, let's kill one
+killed 3283432765de2ec4aee9bea6b30e782ae7fb40634ce4b8f8cd6abbb498820df2
+Auditor validation: success: ["drum","drum","drum","drum","flute","flute","violin","violin"]
+Scheduling a new test
+There are 8 musicians, let's kill one
+killed e9d47fa4e88db5d3f55f671aacf64d025a9c2d63af59dc07a512b93408e3b36a
+Auditor validation: success: ["drum","drum","drum","flute","flute","violin","violin"]
+Scheduling a new test
+There are 7 musicians, let's kill one
+killed ceb4f8a25f34a76486f99113c7a1a5bd529f3065309fbdb53b40ed5e0dac621f
+Auditor validation: success: ["drum","drum","flute","flute","violin","violin"]
+Scheduling a new test
+We have done all tests.

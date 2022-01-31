@@ -7,5 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Erica Ludivine Akoumba, Rodrigues Alves Dylan",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dgram": "^1.0.1",
+    "uuid": "^8.3.2"
+  }
 }
